@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dhaval Tharkar Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #800080;
+      color: white;
+      margin: 0;
+      }
+      .navbar {
+        position: relative;
+        background-color: #000;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 20px;
+        z-index: 1000;
+        }
+        .navbar ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          gap: 20px;
+          }
+          .navbar li {
+            margin: 0;
+            }
+            .navbar a {
+              color: white;
+              text-decoration: none;
+              font-weight: 600;
+              font-size: 16px;
+              }
+              .navbar a:hover {
+                text-decoration: underline;
+                }
+                .mobile-nav-toggle {
+                  display: none;
+                  font-size: 28px;
+                  color: white;
+                  cursor: pointer;
+                  position: absolute;
+                  right: 20px;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  z-index: 1100;
+                  }
+                  @media (max-width: 768px) {
+                    .navbar {
+                      justify-content: flex-start;
+                    }
+                      .navbar ul {
+                        display: none;
+                        flex-direction: column;
+                        background-color: #000;
+                        position: absolute;
+                        top: 100%;
+                        right: 0;
+                        width: 200px;
+                        padding: 10px 0;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+                        }
+                        .navbar ul.active {
+                          display: flex;
+                        }
+                        .mobile-nav-toggle {
+                          display: block;
+                        }
+                      }
+      .main-container {
+        padding: 40px;
+        text-align: center;
+      }
+      .cursor {
+        display: inline-block;
+        margin-left: 3px;
+        animation: blink 1s infinite;
+      }
+      @keyframes blink {
+        0%, 50%, 100% { opacity: 1; }
+        25%, 75% { opacity: 0; }
+      }
+      #about, #resume, #projects {
+        background-color: #800080;
+        color: white;
+        padding: 40px 20px;
+        min-height: 100vh;
+        padding-left: 300px;
+      }
+      section {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+      }
+      section.active {
+        display: block;
+        position: relative;
+        }
+      .button-group a {
+        display: inline-block;
+        margin-right: 15px;
+        padding: 10px 20px;
+        background-color: #1f1f1f;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        }
+      .button-group a:hover {
+        background-color: #444;
+      }
+      .article-bordered {
+        border: 2px solid #ccc;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        display: inline-block;
+        max-width: 100%;
+      }
+      article.art-cal {
+        border: 2px solid white;
+        margin-bottom: 20px;
+        padding: 20px;
+        display: inline-block;
+        width: 80%;
+        background-color: #663399;
+      }
+      .clock{
+        font-size: 80px;
+        font-family: 'Orbitron',sans-serif;
+        color: green;
+        background-color: black;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 20px;
+      }
+  </style>
+  <script>
+    function showSection(sectionId) {
+    }
+    function toggleMobileNav() {
+      document.querySelector('.navbar ul').classList.toggle('active');
+    }
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const navbar = document.querySelector('#navbar');
+        mobileNavToggle.addEventListener('click', () => {
+          navbar.classList.toggle('active');
+        });
+        function showSection(sectionId) {
+          document.querySelectorAll('section').forEach(section => {
+            section.classList.remove('active');
+          });
+          document.getElementById(sectionId).classList.add('active');
+        }
+      </script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="mobile-nav-toggle" onclick="toggleMobileNav()">
+      <i class="bi bi-list"></i>
+    </div>
+    <ul>
+      <li><a href="#home" onclick="showSection('home')">Home</a></li>
+      <li><a href="#about" onclick="showSection('about')">About</a></li>
+      <li><a href="#resume" onclick="showSection('resume')">Resume</a></li>
+      <li><a href="#projects" onclick="showSection('projects')">Projects</a></li>
+      <li><a href="cal.html" target="_blank">Calculator</a></li>
+      <li><a href="https://www.kaggle.com/dhavaltharkaar" target="_blank">Kaggle</a></li>
+      <li><a href="https://public.tableau.com/app/profile/dhavltharkaar" target="_blank">Tableau</a></li>
+    </ul>
+  </nav>
+  <section id="home" class="active" style="display: flex; justify-content: center; align-items: center; height: 100vh; padding: 20px; flex-wrap: wrap; gap: 40px; background-color: #800080; color: white;">
+    <div style="flex: 1; min-width: 280px; margin-left: 200px;">
+      <h2>Hello! <br> My Name is<br> Dhaval Tharkar</h2>
+      <h3 style="margin-top: 10px;">I'm a <span id="typing-text"></span><span class="cursor">|</span></h3>
+      <div class="social-links" style="margin-top: 20px; font-size: 24px;">
+        <a href="https://wa.me/919167875401" target="_blank" style="color: white; margin-right: 10px;"><i class="bi bi-whatsapp"></i></a>
+        <a href="mailto:dhavltharkaaar1699@gmail.com" target="_blank" style="color: white; margin-right: 10px;"><i class="bi bi-envelope"></i></a>
+        <a href="https://public.tableau.com/app/profile/dhavltharkaar" target="_blank" style="color: white; margin-right: 10px;"><i class="bi bi-globe"></i></a>
+        <a href="https://github.com/dhavltharkaaar" target="_blank" style="color: white; margin-right: 10px;"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/dhavltharkaar/" target="_blank" style="color: white; margin-right: 10px;"><i class="bi bi-linkedin"></i></a>
+        <a href="resume.pdf" target="_blank" style="color: white;"><i class="bi bi-download"></i></a>
+      </div>
+    </div>
+    <div style="flex: 1; min-width: 280px; text-align: center;">
+      <img src="https://avatars.githubusercontent.com/u/213625595?v=4" alt="My Photo" style="width: 100%; max-width: 300px; height: 300px; border-radius: 50%; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); transform: translateY(-10px);">
+    </div>
+    <script>
+      const roles = ["Data Analyst."];
+      const typingText = document.getElementById("typing-text");
+      const cursor = document.querySelector(".cursor");
+      let roleIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      function typeEffect() {
+        const currentRole = roles[roleIndex];
+        if (isDeleting) {
+          typingText.textContent = currentRole.substring(0, charIndex--);
+        } else {
+          typingText.textContent = currentRole.substring(0, charIndex++);
+        }
+        if (!isDeleting && charIndex === currentRole.length) {
+          isDeleting = true;
+          setTimeout(typeEffect, 1500);
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          setTimeout(typeEffect, 500);
+        } else {
+          setTimeout(typeEffect, isDeleting ? 50 : 100);
+        }
+      }
+      typeEffect();
+    </script>
+  </section>
+  <section id="about">
+    <article class="article-bordered">
+      <h2>About Me</h2>
+      <article class="article-bordered">
+      <p>Hello! myself Dhaval Tharkar, I'm a Post Graduate Student from B. K. Birla College in Kalyan City of Maharashtra <br> in the Year 2022 in the domain of Data Science and Big Data Analytics. I also completed my Bachelor's Degree <br> in Computer Science in 2020 from Model College of Science and Commerce. <br> </p>
+      <P> During my undergraduate years, I was introduced to Data Science, as well as programming languages such as <br> C++, C#, and Python.<br> Among these, Python became my base language due to its ease of use and versatility.<br> </p>
+      <p>In my Master's, I gained exposure to software tools like Tableau, Power BI, and SPSS, as well as Machine Learning <br> and Deep Learning concepts. I worked on building dashboards with Tableau Public and developing ML models <br> using CSV datasets. My workflow included loading and cleaning datasets, analyzing data using libraries such as pandas,<br> numpy, matplotlib, seaborn, sklearn, klib, and plotly. <br> </p>
+      <p>In early 2024, I encountered an unexpected health issue related to my eyesight, which required medical attention <br> and ultimately led to eye surgery on April 8, 2024. Based on medical advice, I have been on a recovery break for <br> approximately one year, during which I was unable to work.<br> </p>
+      <p>Now that I am recovering well and medically cleared to resume my career, I am motivated to make a fresh start <br> and pursue opportunities as a Data Analyst. With renewed determination, upgraded skills, and a strong desire to <br> grow in the data science domain, I am eager to contribute as a capable and enthusiastic fresher. </p></article>
+  </article>
+  </section>
+  <section id="resume">
+    <article class="article-bordered">
+      <div class="resume-item">
+        <h2 class="resume-title">Summary</h2>
+        <p>Experienced in managing Data Lifecycle, Collection, Cleaning,Transformation, Analysis, and Visualization. <br> Developed a Python script using Jupyter Notebook and Python (IDLE) to engineer a machine learning model. <br> Innovated interactive Dashboards in Tableau Public for various csv files. Deployed a machine learning model <br> on a CSV file using Flask as an academic project. Eager to apply my educational background and technical <br> skills to contribute to organizational growth.</p>
+      </div>
+      <h2>Education Qualification: </h2>
+      <div class="resume-item">
+        <h3>Master's Degree in Data Science and Big Data Analytics</h3>
+        <p><em>B. K. Birla College of Arts, Science and Commerce, Kalyan</em></p>
+        <div>
+          <h4 style="display: inline;">Dec 2020 - Apr 2022</h4>
+          <p style="display: inline; margin-left: 350px;"><b>CGPA: </b>9.52 Out of 10</p>
+        </div>
+        <p>Python, R, Data Analytics, Machine Learning, Mathematics & Statistics, AI, Tableau, Power BI, MS Excel, IBM SPSS</p>
+      </div>
+      <div class="resume-item">
+        <h3>Bachelor's Degree in Computer Science</h3>
+        <p><em>Model College of Science and Commerce, Kalyan</em></p>
+        <div>
+          <h4 style="display: inline;">Jun 2017 - Oct 2020</h4>
+          <p style="display: inline; margin-left: 350px;"><b>CGPA: </b>8.53 Out of 10</p>
+        </div>
+        <p>Python, HTML, CSS, Javascript, SQL, R, RStudio, Statistics, Web Development</p>
+      </div>
+      <div class="resume-item">
+        <h3>Higher Secondary School certificate (HSC)</h3>
+        <p><em>Model College of Science and Commerce, Kalyan</em></p>
+        <div>
+          <h4 style="display: inline;">Jun 2016 - Feb 2017</h4>
+          <p style="display: inline; margin-left: 350px;"><b>Percentage: </b>53.38 %</p>
+        </div>
+        <p>Physics, Chemistry, Maths, Biology, Information Technology</p>
+      </div>
+      <div class="resume-item">
+        <h3>Secondary School Certificate (SSC)</h3>
+        <p><em>Model English High School, Kalyan</em></p>
+        <div>
+          <h4 style="display: inline;">Jun 2014 - Mar 2015</h4>
+          <p style="display: inline; margin-left: 350px;"><b>Percentage: </b>68 %</p>
+        </div>
+      </div>
+      <div class= "resume-item">
+        <h2 class="resume-title">Career Break:</h2>
+        <div>
+          <h4 style="display: inline;">May 2022 - Jun 2025</h4>
+          <p>
+            <ui>
+              <li>From May 2022 to December 2022, I dedicated time to enhancing my skills in the field of data science by learning <br> machine learning concepts and applying to various companies in an effort to start my career. However, I realized <br> that my resume lacked the impact needed to secure interviews, which limited my opportunities during that time.<br></li>
+              <li>In 2023, I focused on strengthening my resume and continued developing my technical skills. I explored <br> computer vision and completed a project using YOLOv5 for object detection, further expanding my knowledge and <br> hands-on experience in the field. Despite these efforts, I was still unable to secure a suitable opportunity.<br></li>
+              <li>In early 2024, I encountered an unexpected health issue related to my eyesight, which required medical attention <br> and ultimately led to eye surgery on April 8, 2024. Based on medical advice, I have been on a recovery break for <br> approximately one year, during which I was unable to work.<br> </li>
+              <li>Now that I am recovering well and medically cleared to resume my career, I am motivated to make a fresh start <br> and pursue opportunities as a Data Analyst. With renewed determination, upgraded skills, and a strong desire to <br> grow in the data science domain, I am eager to contribute as a capable and enthusiastic fresher.
+              </li>
+            </ui>
+          </p>
+        </div>
+      </div>
+      <div class="resume-item">
+        <h2 class="resume-title">Personal Details </h2>
+        <div>
+          <h4 style="display: inline;">Nationality:</h4>
+          <p style="display: inline; margin-left: 167px;">Indian </p>
+        </div>
+        <div>
+          <h4 style="display: inline;">Date of Birth:</h4>
+          <p style="display: inline; margin-left: 150px;">16 Oct, 1999 </p>
+        </div>  
+        <div>
+          <h4 style="display: inline;">Gender:</h4>
+          <p style="display: inline; margin-left: 190px;">Male </p>
+        </div>
+        <div>
+          <h4 style="display: inline;">Marital Status:</h4>
+          <p style="display: inline; margin-left: 140px;">Single </p>
+        </div>
+      </div>
+      <div class="resume-item">
+        <h2 class="resume-title">Skills: </h2>
+        <table>
+          <td>
+            <ul>
+              <li>Analytics</li>
+              <li>Adaptability</li>
+              <li>Creativity</li>
+              <li>Critical Thinking</li>
+              <li>Decision Making</li>
+              <li>Team Work</li>
+              <li>Problem Solving</li>
+            </ul>
+          </td><td></td>
+          <td>
+            <ul>
+              <li>Python</li>
+              <li>R</li>
+              <li>SQL</li>
+              <li>Microsoft Excel</li>
+              <li>Tableau</li>
+              <li>Statistics</li>
+              <li>HTML</li>
+              <li>CSS</li>
+            </ul>
+          </td><td></td>
+          <td>
+            <ul>
+              <li>IDLE</li>
+              <li>RStudio</li>
+              <li>Google Colab</li>
+              <li>Jupyteer Notebook</li>
+              <li>Spyder</li>
+              <li>MySQL Workbench</li>
+              <li>Macjine Learning</li>
+            </ul>
+          </td><td></td>
+          <td>
+            <ul>
+              <li>Data Analysis</li>
+              <li>Data Collection</li>
+              <li>Data Transformation</li>
+              <li>Data Modelling</li>
+              <li>Supervised Machine Learning</li>
+              <li>Unsupervised Machine Learning</li>
+            </ul>
+          </td><td></td>
+          <td>
+            <ul>
+              <li>Pandas</li>
+              <li>NuPy</li>
+              <li>Matplotlib</li>
+              <li>Seaborn</li>
+              <li>Klib</li>
+              <li>Sklean</li>
+              <li>Flask</li>
+            </ul>
+          </td>
+        </table>
+      </div>
+      <div class="resume-item">
+        <h2 class="resume-title">Languages: </h2>
+        <table>
+          <td>
+            <td>English,  </td>
+          </td>
+          <td>
+            <td>Hindi,  </td>
+          </td>
+          <td>
+            <td>Marathi</td>
+          </td>
+        </table>
+      </div>
+      <div class="resume-item">
+        <h2 class="resume-title">Preferred Location: </h2>
+        <table>
+          <td>
+            <td>Mumbai,  </td>  
+          </td>
+          <td>
+            <td>Pune,  </td>
+          </td>
+          <td>
+            <td>Bangalore, </td>
+          </td>
+          <td>
+            <td>Chennai, </td>
+          </td>
+          <td>
+            <td>Hyderabad, </td>
+          </td>
+          <td>
+            <td>Coimbatore</td>
+          </td>
+        </table>
+      </div>
+      <div class= "resume-item" >
+        <h2 class="resume-title">Certificates and Achievements :</h2>
+        <h4 style="display: inline;">Python 3.4.3 Training</h4>
+        <p style="display: inline; margin-left: 350px;">Issued by Spoken Tutorial</p>
+      </div>
+    </article>
+  </section> 
+</Section>
+<section id="projects">
+  <article class="article-bordered">
+    <h2> Academic Project 2022 <br></h2>
+    <article class="article-bordered">
+      <h2>Bike Share Prediction using Machine Learning</h2>
+      <p>This case study is about a bike rental shop.They want to predict the demand of bikes at any given hour<br> of the day, so that, they can arrange for sufficient number of bike for the customers.</p>
+      <table>
+        <tr>
+          <td style = "background-color:black">Python</td><td></td>
+          <td style = "background-color:black">Jupyter Notebook</td><td></td>
+          <td style = "background-color:black">Spyder</td><td></td>
+          <td style = "background-color:black">Flask</td><td></td>
+          <td style = "background-color:black">Pandas</td><td></td>
+           <td style = "background-color:black">Numpy</td><td></td>
+           <td style = "background-color:black">SkLearn</td><td></td>
+         </tr>
+       </table><br>
+       <div class="button-group">
+        <a href="https://github.com/dhavltharkaaar/PortfolioProjects/tree/main/Bike_Share_Prediction" class="button">View Project</a>
+        <a href= "https://github.com/dhavltharkaaar/PortfolioProjects/blob/main/Bike_Share_Prediction/Report/dhaval_Project.pdf" class="button">View Documentation</a>
+      </div>
+    </article>
+  </article>
+  <article class="article-bordered">
+    <h2>Personal Project <br></h2>
+    <article class="article-bordered">
+      <h2>Used Cars Price Prediction using Machine Learning</h2>
+      <p>This Projects contains data of cars24.com from a popular online platform for buying and selling <br> used cars. Made a machine learning model to predict the prices of various cars model.</p>
+      <table>
+        <tr>
+          <td style = "background-color:black">Python</td><td></td>
+          <td style = "background-color:black">Jupyter Notebook</td><td></td>
+          <td style = "background-color:black">Spyder</td><td></td>
+          <td style = "background-color:black">Flask</td><td></td>
+          <td style = "background-color:black">Pandas</td><td></td>
+          <td style = "background-color:black">Numpy</td><td></td>
+          <td style = "background-color:black">SkLearn</td><td></td>
+          </tr>
+        </table><br>
+        <div class="button-group">
+          <a href="https://github.com/dhavltharkaaar/PortfolioProjects/tree/main/Used_Cars_Price_Prediction" class="button">View Project</a>
+        </div>
+      </article><article></article>
+      <article class="article-bordered">
+        <h2>Flight Fare Prediction using Machine Learning</h2>
+        <p>This Projects contains data of flight fares of different fligt through which it is used to predict the <br> fare of flight fare for future. Made a machine learning model to predict the fares of <br> different flight tickets.<br></p>
+          <table>
+            <tr>
+              <td style = "background-color:black">Python</td><td></td>
+              <td style = "background-color:black">Jupyter Notebook</td><td></td>
+              <td style = "background-color:black">Spyder</td><td></td>
+              <td style = "background-color:black">Flask</td><td></td>
+              <td style = "background-color:black">Pandas</td><td></td>
+              <td style = "background-color:black">Numpy</td><td></td>
+              <td style = "background-color:black">SkLearn</td><td></td>
+            </tr>
+          </table><br>
+          <div class="button-group">
+            <a href="https://github.com/dhavltharkaaar/PortfolioProjects/tree/main/Flight_Fare_Prediction" class="button">View Project</a>
+          </div>
+        </article>
+        <article></article>
+        <article class="article-bordered">
+          <h2>APY Dashboard using  Microsoft Excel</h2>
+          <p>APY Dashboard to represent the how much pension would get to the <br> non-government employees, as  well as how much money to be contributed to APY i.e. <br>Atal Pension Yojana and to track the pending or on going investment.</p>
+          <table>
+            <tr>
+              <td style = "background-color:black">MS Excel</td><td></td>
+              <td style = "background-color:black">Advanced Excel</td><td></td>
+              <td style = "background-color:black">VLOOKUP</td><td></td>
+            </tr>
+          </table><br>
+          <div class="button-group">
+            <a href="https://github.com/dhavltharkaaar/PortfolioProjects/blob/main/APY_Document/APYBRD.pdf" class="button">View Documentation</a>
+          </div>
+        </article>
+
+        <article></article>
+        <article class="article-bordered">
+          <h2>AirBnb Analysis Dashboard Using Tableau</h2>
+          <p>In this Project using Tableau Public, I analysed, Airbnb dataset, displayed the various answeers<br> regarding the Airbnb like their Room type, Neighborhood Groups, Yearwise data, etc for this<br> Pie chart, Bar chart, Area chart has been used.</p>
+          <table>
+            <tr>
+              <td style = "background-color:black">Tableau Public</td><td></td>
+              <td style = "background-color:black">Jupyter</td><td></td>
+              <td style = "background-color:black">Python</td><td></td>
+              <td style = "background-color:black">Pandass</td><td></td>
+              <td style = "background-color:black">Matplotlib</td><td></td>
+              <td style = "background-color:black">Seaborn</td><td></td>
+            </tr>
+          </table><br>
+          <div class="button-group">
+            <a href="https://public.tableau.com/app/profile/dhavltharkaar/viz/AirBnbAnalysisDashboard_17489543150070/Dashboard1" class="button">View Dashboard</a>
+            <a href="https://github.com/dhavltharkaaar/PortfolioProjects/tree/main/AirBnbAnalysis" class="button">View Project</a>
+          </div>
+        </article>
+        </article>
+        <article></article>
+        <article class="article-bordered">
+        <h1>Live Project</h1>
+        <article class="article-bordered">
+        <h2>Digital Clock</h2>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+        <div id="DigitalClock" class="clock"></div>
+        <script type="text/javascript">
+          function showTime() {
+            const date = new Date();
+            let h = date.getHours();
+            let m = date.getMinutes();
+            let s = date.getSeconds();
+            let session = "AM";
+            if (h === 0) {
+             h = 12;
+           } else if (h === 12) {
+            session = "PM"; 
+          } else if (h > 12) {
+            h -= 12; 
+            session = "PM";
+          }
+          h = String(h).padStart(2, "0");
+          m = String(m).padStart(2, "0");
+          s = String(s).padStart(2, "0");
+          document.getElementById("DigitalClock").innerHTML = `${h}:${m}:${s} ${session}`;
+          setTimeout(showTime, 1000);
+        }
+        showTime();
+      </script>
+    </article><article></article>
+    <article class="article-bordered">
+      <div class="container">
+        <h2 class="row"> To-Do List</h2>
+        <br><br>
+        <div class="row">
+          <form>
+            <div class="input-group">
+              <input type="text" placeholder="todo-item" id="box" style="width: 30vw">
+            </div>
+            <br>
+            <div class="form-group">
+              <input type="button" value="Add" style="width: 10vw" onclick="add_item()">
+            </div>
+          </form>
+        </div>
+        <div class="row">
+          <ul id="list_item"></ul>
+        </div>
+      </div>
+      <script type="text/javascript">
+        function add_item(){
+          let item = document.getElementById("box");
+          let list_item = document.getElementById("list_item");
+          if (item.value !== "") {  
+            let make_li = document.createElement("li");
+            make_li.appendChild(document.createTextNode(item.value));
+            list_item.appendChild(make_li);
+            item.value = "";
+            make_li.onclick = function(){
+              this.parentNode.removeChild(this);
+            };
+          } else{
+            alert("Please add a value to the item");  
+          }
+        } 
+      </script>
+      </article>
+      <article></article>
+      <article class="article-bordered">
+      <style>
+        .title{
+          margin-bottom: 10px;
+          text-align: center;
+          width: 210px;
+          color: orange;
+          border: solid black 2px;
+        }
+        input[type="button"]{
+          background-color: black;
+          color: orange;
+          border: solid black 2px;
+          width: 100%;
+        }
+        input[type="text"]{
+          background-color: white;
+          border: solid black 2px;
+          width: 100%;
+        }
+      </style>
+      <center>
+        <h2>Simple Calculator</h2>
+        <div class = "title"> Calculator</div>
+        <table botdr = "0">
+          <tr>
+            <td colspan = "3"><input type="text"  id="result"></td>
+            <td> <input type="button" value="C", onclick = "clr()"></td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="1", onclick = "display('1')"></td>
+            <td> <input type="button" value="2", onclick = "display('2')"></td>
+            <td> <input type="button" value="3", onclick = "display('3')"></td>
+            <td> <input type="button" value="/", onclick = "display('/')"></td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="4", onclick = "display('4')"></td>
+            <td> <input type="button" value="5", onclick = "display('5')"></td>
+            <td> <input type="button" value="6", onclick = "display('6')"></td>
+            <td> <input type="button" value="*", onclick = "display('*')"></td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="7", onclick = "display('7')"></td>
+            <td> <input type="button" value="8", onclick = "display('8')"></td>
+            <td> <input type="button" value="9", onclick = "display('9')"></td>
+            <td> <input type="button" value="-", onclick = "display('-')"></td>
+          </tr>
+          <tr>
+            <td> <input type="button" value=".", onclick = "display('.')"></td>
+            <td> <input type="button" value="0", onclick = "display('0')"></td>
+            <td> <input type="button" value="=", onclick = "equate()"></td>
+            <td> <input type="button" value="+", onclick = "display('+')"></td>
+          </tr>
+        </table>
+      </center>
+      <script type="text/javascript">
+        function clr(){
+          document.getElementById("result").value = " ";
+        }
+        function display(val){
+          document.getElementById("result").value += val;
+        }
+        function equate(){
+          let x =document.getElementById("result").value;
+          let y = eval(x);
+          document.getElementById("result").value =y;
+        }
+      </script>
+    </article>
+  </article>
+</section>
+</body>
+</html>
